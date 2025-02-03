@@ -13,7 +13,8 @@ export default function Products() {
     // const [query, setQuery] = useState(DEFAULT_QUERY);
     
     const { data, isLoading, isError } = useQuery();
-    
+    const [ cartQuantity, setCartQuantity ] = useState(0);
+
     // const handleSubmit = (e) => {
     //     e.preventDefault();
     //     setQuery(queryInput);
@@ -25,30 +26,39 @@ export default function Products() {
     //     setQueryInput(e.target.value);
     //   };
     
+    const addToCartHandler = (productQuantity) => {
+      setCartQuantity(cartQuantity + productQuantity);
+      console.log(`Adding ${productQuantity} copies of product`)
+      console.log(`Cart currently contains ${cartQuantity + productQuantity} items`);
+    }
+
 
     return (
-      <div>
-        {/* <form onSubmit={handleSubmit}>
-          <label>
-            Enter Search Query: 
-            <input type="text" name="search" id="search" onChange={handleChange} value={queryInput} />
-          </label>
-          <button type="submit">Submit</button>
-        </form> */}
-  
-        {isError ? (<div>Oops... something went wrong.</div>):
-          ( <>
-            <ul className="products-list">
-              {isLoading? (<div>Loading...</div>):
-              (data.map( (item) => 
-                (<li key={item.id}>
-                  <ProductCard product={item} />
-                </li>)
-              ))}
-            </ul>
-            
-            </>)}
-      </div>
+      <>
+        <p>Cart currently contains {cartQuantity} items.</p>
+        <div>
+          {/* <form onSubmit={handleSubmit}>
+            <label>
+              Enter Search Query: 
+              <input type="text" name="search" id="search" onChange={handleChange} value={queryInput} />
+            </label>
+            <button type="submit">Submit</button>
+          </form> */}
+    
+          {isError ? (<div>Oops... something went wrong.</div>):
+            ( <>
+              <ul className="products-list">
+                {isLoading? (<div>Loading...</div>):
+                (data.map( (item) => 
+                  (<li key={item.id}>
+                    <ProductCard product={item} addToCartHandler={addToCartHandler} />
+                  </li>)
+                ))}
+              </ul>
+              
+              </>)}
+        </div>
+      </>
     );
 
 }

@@ -10,8 +10,7 @@ export default function Shop() {
                 <Navbar />
             </header>
             <div>
-                <h1>Shopping</h1>
-                <p>This is the Shop page.</p>
+                <h1>Shop</h1>
             </div>
             <Products />
         </>
