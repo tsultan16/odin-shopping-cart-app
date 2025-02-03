@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useOutletContext } from 'react-router-dom';
 import axios from "axios";
 import ProductCard from "./ProductCard";
 import "../App.css";
@@ -13,7 +14,7 @@ export default function Products() {
     // const [query, setQuery] = useState(DEFAULT_QUERY);
     
     const { data, isLoading, isError } = useQuery();
-    const [ cartQuantity, setCartQuantity ] = useState(0);
+    const { cartQuantity, setCartQuantity } = useOutletContext();
 
     // const handleSubmit = (e) => {
     //     e.preventDefault();
@@ -35,7 +36,6 @@ export default function Products() {
 
     return (
       <>
-        <p>Cart currently contains {cartQuantity} items.</p>
         <div>
           {/* <form onSubmit={handleSubmit}>
             <label>
