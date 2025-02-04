@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import "../App.css";
 
 
@@ -24,7 +24,7 @@ export default function ProductCard({ product, addToCartHandler }) {
                     Quantity 
                     <input type="number" value={quantity} onChange={handleChange} />
                 </label>
-                <button type="button" onClick={(e) => {addToCartHandler(quantity)}}>Add to cart</button>
+                <button type="button" onClick={(e) => {addToCartHandler(product, quantity)}}>Add to cart</button>
             </div>
 
         </div>
